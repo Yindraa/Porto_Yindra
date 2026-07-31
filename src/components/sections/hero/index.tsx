@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/language-provider";
+import { useIntro } from "@/components/intro-provider";
 import { ScrambleText } from "@/components/scramble-text";
 import { FadeText } from "@/components/fade-text";
 import { siteConfig } from "@/lib/site-config";
@@ -13,6 +14,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
   const { t } = useLanguage();
+  const { introDone } = useIntro();
 
   return (
     <section
@@ -21,7 +23,7 @@ export function Hero() {
     >
       <motion.div
         initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        animate={introDone ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
         transition={{ duration: 0.7, ease: EASE }}
       >
         <StatusPill label={t.hero.status} />
@@ -29,7 +31,7 @@ export function Hero() {
 
       <motion.p
         initial={{ opacity: 0, y: 14, filter: "blur(6px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        animate={introDone ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
         transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
         className="mt-5 text-small font-medium tracking-tight text-accent"
       >
@@ -38,7 +40,7 @@ export function Hero() {
 
       <motion.h1
         initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        animate={introDone ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
         transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
         className="mt-4 max-w-3xl text-display text-foreground"
       >
@@ -47,7 +49,7 @@ export function Hero() {
 
       <motion.p
         initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        animate={introDone ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
         transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
         className="mt-6 max-w-xl text-body-lg text-foreground-muted"
       >
@@ -56,7 +58,7 @@ export function Hero() {
 
       <motion.div
         initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        animate={introDone ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
         transition={{ duration: 0.8, delay: 0.4, ease: EASE }}
         className="mt-10 flex items-center gap-4"
       >

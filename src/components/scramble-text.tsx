@@ -27,15 +27,18 @@ export function ScrambleText({
   className,
   duration = 520,
   glyphInterval = 70,
+  scrambleOnMount = false,
 }: {
   text: string;
   className?: string;
   duration?: number;
   glyphInterval?: number;
+  /** Scramble in on first mount too, instead of only reacting to text changes. */
+  scrambleOnMount?: boolean;
 }) {
-  const [display, setDisplay] = useState(text);
+  const [display, setDisplay] = useState(scrambleOnMount ? "" : text);
   const [isScrambling, setIsScrambling] = useState(false);
-  const prevText = useRef(text);
+  const prevText = useRef(scrambleOnMount ? "" : text);
   const frameRef = useRef<number | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
