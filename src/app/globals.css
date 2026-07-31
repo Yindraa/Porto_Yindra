@@ -1,26 +1,256 @@
 @import "tailwindcss";
 
+/*
+  Silent Aurora design tokens.
+  Raw values live as CSS custom properties (:root / .dark) so they can
+  differ per theme; @theme inline exposes them to Tailwind as utilities
+  (bg-canvas, text-foreground-muted, shadow-soft, text-display, ease-standard, ...).
+*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Neutral surface scale */
+  --canvas: #fafafa;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+
+  /* Foreground / text emphasis levels */
+  --foreground: #1d1d1f;
+  --foreground-muted: #6e6e73;
+  --foreground-subtle: #8e8e93;
+
+  /* Hairline borders */
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.13);
+
+  /* Single soft-blue accent */
+  --accent: #4a6fe0;
+  --accent-foreground: #ffffff;
+  --accent-soft: rgba(74, 111, 224, 0.1);
+
+  /* Glassmorphism surface (navbar, cards, floating panels only) */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-blur: 20px;
+  --glass-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.07);
+
+  /* Ambient soft shadow for non-glass surfaces */
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.03), 0 8px 24px rgba(0, 0, 0, 0.05);
+
+  /* Aurora background hues (kept desaturated, low opacity) */
+  --aurora-a: rgba(74, 111, 224, 0.16);
+  --aurora-b: rgba(140, 120, 220, 0.12);
+  --aurora-c: rgba(90, 180, 200, 0.1);
+}
+
+.dark {
+  --canvas: #0a0a0b;
+  --surface: #17171a;
+  --surface-raised: #1c1c1f;
+
+  --foreground: #f5f5f7;
+  --foreground-muted: #a1a1a6;
+  --foreground-subtle: #7b7b80;
+
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  --accent: #7aa2ff;
+  --accent-foreground: #0a0a0b;
+  --accent-soft: rgba(122, 162, 255, 0.14);
+
+  --glass-bg: rgba(24, 24, 27, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.45);
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.35);
+
+  --aurora-a: rgba(122, 162, 255, 0.14);
+  --aurora-b: rgba(150, 130, 220, 0.1);
+  --aurora-c: rgba(90, 180, 200, 0.08);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Color utilities: bg-canvas, text-foreground-muted, border-border, etc. */
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-glass: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+
+  /* Shadow utilities: shadow-soft, shadow-glass */
+  --shadow-soft: var(--shadow-soft);
+  --shadow-glass: var(--glass-shadow);
+
+  /* Restrained type scale: text-display, text-h1 ... each bundles size + line-height + tracking + weight */
+  --text-display: 4.5rem;
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.025em;
+  --text-display--font-weight: 600;
+
+  --text-h1: 3rem;
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h1--font-weight: 600;
+
+  --text-h2: 2.125rem;
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.015em;
+  --text-h2--font-weight: 600;
+
+  --text-h3: 1.375rem;
+  --text-h3--line-height: 1.3;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 500;
+
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.6;
+  --text-body-lg--font-weight: 400;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+  --text-body--font-weight: 400;
+
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-small--font-weight: 400;
+
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.4;
+  --text-caption--letter-spacing: 0.01em;
+  --text-caption--font-weight: 500;
+
+  /* Generous, continuous-feeling corner radii */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+
+  /* Calm, OS-like motion tokens */
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@supports (backdrop-filter: blur(1px)) {
+  .glass {
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
   }
 }
 
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
 body {
-  background: var(--background);
+  background: var(--canvas);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  transition: background-color var(--duration-base) var(--ease-standard),
+    color var(--duration-base) var(--ease-standard);
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--foreground);
+}
+
+/* Aurora background: three soft, heavily-blurred blobs drifting slowly. Ambient only. */
+.aurora-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aurora-blob-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+.aurora-blob-1 {
+  top: -15%;
+  left: -10%;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle, var(--aurora-a), transparent 70%);
+  animation: aurora-drift-1 50s var(--ease-standard) infinite alternate;
+}
+
+.aurora-blob-2 {
+  top: 10%;
+  right: -15%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, var(--aurora-b), transparent 70%);
+  animation: aurora-drift-2 65s var(--ease-standard) infinite alternate;
+}
+
+.aurora-blob-3 {
+  bottom: -20%;
+  left: 20%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, var(--aurora-c), transparent 70%);
+  animation: aurora-drift-3 58s var(--ease-standard) infinite alternate;
+}
+
+@keyframes aurora-drift-1 {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(6%, 8%) scale(1.08);
+  }
+}
+
+@keyframes aurora-drift-2 {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(-8%, 6%) scale(1.05);
+  }
+}
+
+@keyframes aurora-drift-3 {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(4%, -6%) scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
