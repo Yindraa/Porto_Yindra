@@ -6,6 +6,7 @@ import { LanguageProvider } from "@/components/language-provider";
 import { AuroraBackground } from "@/components/aurora-background";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { ScrollProgressBar } from "@/components/scroll-progress-bar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Your Name — Software Engineer",
+  title: "Made Narayindra — Full Stack Developer",
   description: "Personal portfolio.",
 };
 
@@ -37,6 +38,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <LanguageProvider>
             <AuroraBackground />
+            <ScrollProgressBar />
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
