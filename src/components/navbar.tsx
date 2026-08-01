@@ -5,7 +5,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
+import { VariantToggle } from "@/components/variant-toggle";
 import { useLanguage } from "@/components/language-provider";
+import { useVariant } from "@/components/variant-provider";
 import { ScrambleText } from "@/components/scramble-text";
 import { siteConfig } from "@/lib/site-config";
 import { useActiveSection } from "@/lib/hooks/use-active-section";
@@ -18,6 +20,7 @@ const SECTION_IDS = ["about", "projects", "skills", "contact"] as const;
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const { t } = useLanguage();
+  const { variant } = useVariant();
   const activeSection = useActiveSection(SECTION_IDS);
   const scrolled = useScrolled();
 
@@ -74,8 +77,13 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <LanguageToggle />
-            <ThemeToggle />
+            {/* On mobile these move into the dropdown below instead, so the
+                bar itself stays down to just the logo + menu button. */}
+            <div className="hidden items-center gap-2 sm:flex">
+              <LanguageToggle />
+              <VariantToggle />
+              {variant === "aurora" && <ThemeToggle />}
+            </div>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -125,6 +133,12 @@ export function Navbar() {
                     </a>
                   );
                 })}
+
+                <div className="mt-2 flex items-center justify-center gap-2 border-t border-border pt-3">
+                  <LanguageToggle />
+                  <VariantToggle />
+                  {variant === "aurora" && <ThemeToggle />}
+                </div>
               </motion.nav>
             </>
           )}

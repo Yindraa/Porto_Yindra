@@ -74,6 +74,64 @@
   --aurora-c: rgba(90, 180, 200, 0.08);
 }
 
+/* Theme variants: alternate visual identities, independent of light/dark.
+   Selected via VariantProvider, which sets data-variant on <html>. Both
+   "tech" and "alive" are fixed single-mode (no light variant), so they
+   override unconditionally regardless of .dark. The element+attribute
+   selector (html[data-variant=...]) keeps specificity higher than .dark
+   so this wins the cascade no matter the source order. */
+html[data-variant="tech"] {
+  --canvas: #05070a;
+  --surface: #0a0e14;
+  --surface-raised: #0d1219;
+
+  --foreground: #baffc9;
+  --foreground-muted: #6fae7c;
+  --foreground-subtle: #4a7355;
+
+  --border: rgba(57, 255, 136, 0.16);
+  --border-strong: rgba(57, 255, 136, 0.32);
+
+  --accent: #39ff88;
+  --accent-foreground: #05070a;
+  --accent-soft: rgba(57, 255, 136, 0.12);
+
+  --glass-bg: rgba(10, 14, 20, 0.62);
+  --glass-border: rgba(57, 255, 136, 0.22);
+  --glass-blur: 16px;
+  --glass-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.5);
+  --glass-bg-solid: rgba(6, 9, 13, 0.94);
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.45);
+
+  --font-sans: var(--font-geist-mono);
+}
+
+html[data-variant="alive"] {
+  --canvas: #0b0714;
+  --surface: #150f22;
+  --surface-raised: #1a1329;
+
+  --foreground: #f5eeff;
+  --foreground-muted: #b8a8d9;
+  --foreground-subtle: #8b7aae;
+
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+
+  --accent: #ff5fa3;
+  --accent-foreground: #0b0714;
+  --accent-soft: rgba(255, 95, 163, 0.16);
+
+  --glass-bg: rgba(21, 15, 34, 0.58);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-blur: 20px;
+  --glass-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 32px rgba(0, 0, 0, 0.45);
+  --glass-bg-solid: rgba(14, 10, 22, 0.92);
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -189,6 +247,48 @@ body {
   color: var(--foreground);
 }
 
+/* Tech theme: blinking terminal cursor, shown at the end of whichever
+   TypewriterLine is currently typing. */
+.tech-cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  margin-left: 2px;
+  background: currentColor;
+  vertical-align: text-bottom;
+  animation: tech-cursor-blink 1s steps(1) infinite;
+}
+
+@keyframes tech-cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Alive theme: moving gradient text for the Hero name. */
+.gradient-text-alive {
+  background-image: linear-gradient(90deg, #ff5fa3, #a855f7, #38bdf8, #ff5fa3);
+  background-size: 300% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradient-shift 6s linear infinite;
+}
+
+@keyframes gradient-shift {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 300% center;
+  }
+}
+
 /* Skills marquee: an infinite, hover-pausable logo strip. The track's
    content is duplicated once in the component, so translating by -50%
    loops seamlessly back to the start. */
@@ -286,6 +386,174 @@ body {
   }
   to {
     transform: translate(4%, -6%) scale(1.1);
+  }
+}
+
+/* Tech variant background: a quiet drifting grid plus a slow scanline
+   sweep. Deliberately understated — it's atmosphere, not the focal point. */
+.tech-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(57, 255, 136, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 136, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: tech-grid-drift 70s linear infinite;
+}
+
+@keyframes tech-grid-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 480px 480px;
+  }
+}
+
+.tech-scanline {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  height: 160px;
+  z-index: -10;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, rgba(57, 255, 136, 0.06), transparent);
+  animation: tech-scanline-sweep 9s ease-in-out infinite;
+}
+
+@keyframes tech-scanline-sweep {
+  0% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(105vh);
+  }
+}
+
+/* Alive variant background: six brighter, faster, more varied orbs than
+   the aurora blobs — the most visually active of the three themes, still
+   pointer-events-none and always behind content. */
+.alive-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.alive-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  will-change: transform;
+}
+
+.alive-blob-1 {
+  top: -10%;
+  left: -10%;
+  width: 42vw;
+  height: 42vw;
+  background: radial-gradient(circle, rgba(255, 95, 163, 0.28), transparent 70%);
+  animation: alive-drift-1 18s var(--ease-standard) infinite alternate;
+}
+
+.alive-blob-2 {
+  top: 5%;
+  right: -12%;
+  width: 38vw;
+  height: 38vw;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.26), transparent 70%);
+  animation: alive-drift-2 22s var(--ease-standard) infinite alternate;
+}
+
+.alive-blob-3 {
+  bottom: -15%;
+  left: 15%;
+  width: 46vw;
+  height: 46vw;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.22), transparent 70%);
+  animation: alive-drift-3 20s var(--ease-standard) infinite alternate;
+}
+
+.alive-blob-4 {
+  top: 35%;
+  left: 40%;
+  width: 30vw;
+  height: 30vw;
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.16), transparent 70%);
+  animation: alive-drift-4 16s var(--ease-standard) infinite alternate;
+}
+
+.alive-blob-5 {
+  bottom: 10%;
+  right: 5%;
+  width: 34vw;
+  height: 34vw;
+  background: radial-gradient(circle, rgba(255, 95, 163, 0.2), transparent 70%);
+  animation: alive-drift-5 24s var(--ease-standard) infinite alternate;
+}
+
+.alive-blob-6 {
+  top: -5%;
+  left: 35%;
+  width: 26vw;
+  height: 26vw;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.2), transparent 70%);
+  animation: alive-drift-6 14s var(--ease-standard) infinite alternate;
+}
+
+@keyframes alive-drift-1 {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(14%, 16%) scale(1.2);
+  }
+}
+
+@keyframes alive-drift-2 {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(-16%, 12%) scale(1.15);
+  }
+}
+
+@keyframes alive-drift-3 {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(10%, -14%) scale(1.25);
+  }
+}
+
+@keyframes alive-drift-4 {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(-12%, 10%) scale(1.1);
+  }
+}
+
+@keyframes alive-drift-5 {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(-10%, -12%) scale(1.2);
+  }
+}
+
+@keyframes alive-drift-6 {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(12%, 14%) scale(1.15);
   }
 }
 

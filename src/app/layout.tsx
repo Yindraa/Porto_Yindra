@@ -3,8 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
+import { VariantProvider } from "@/components/variant-provider";
 import { IntroProvider } from "@/components/intro-provider";
-import { AuroraBackground } from "@/components/aurora-background";
+import { ThemedBackground } from "@/components/themed-background";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { ScrollProgressBar } from "@/components/scroll-progress-bar";
@@ -38,13 +39,15 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <LanguageProvider>
-            <IntroProvider>
-              <AuroraBackground />
-              <ScrollProgressBar />
-              <Navbar />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </IntroProvider>
+            <VariantProvider>
+              <IntroProvider>
+                <ThemedBackground />
+                <ScrollProgressBar />
+                <Navbar />
+                <main className="flex-1">{children}</main>
+                <Footer />
+              </IntroProvider>
+            </VariantProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>
