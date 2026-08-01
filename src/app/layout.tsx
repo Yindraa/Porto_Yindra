@@ -28,6 +28,9 @@ const fredoka = Fredoka({
 export const metadata: Metadata = {
   title: "Made Narayindra — Full Stack Developer",
   description: "Personal portfolio.",
+  icons: {
+    icon: "/logo-portfolio.png",
+  },
 };
 
 export default function RootLayout({
