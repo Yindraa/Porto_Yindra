@@ -21,7 +21,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const { t } = useLanguage();
   const { variant } = useVariant();
-  const activeSection = useActiveSection(SECTION_IDS);
+  const activeSection = useActiveSection(SECTION_IDS, variant);
   const scrolled = useScrolled();
 
   const navItems = [

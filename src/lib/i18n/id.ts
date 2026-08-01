@@ -28,6 +28,53 @@ export const id: Dictionary = {
       { label: "Fokus", value: "Web, mobile & desktop" },
       { label: "Saat ini", value: "Lulusan Baru & Software Engineer" },
     ],
+    timelineLabel: "Perjalanan",
+    timeline: [
+      {
+        id: "exp-1",
+        role: "Lead Web Developer (KKN/KKT)",
+        company: "Desa Leilem, Minahasa",
+        duration: "Okt 2025 - Selesai",
+        description: [
+          "Memimpin pengembangan website profil desa sebagai bagian dari program pengabdian masyarakat.",
+          "Membangun platform promosi UMKM lokal untuk membantu digitalisasi ekonomi desa.",
+        ],
+        skillTags: ["Next.js", "Leadership", "Fullstack", "Supabase"],
+      },
+      {
+        id: "exp-2",
+        role: "Web Developer Intern",
+        company: "PT. Bank SulutGo (Divisi Pemasaran Dana)",
+        duration: "Sep 2025",
+        description: [
+          "Mendapatkan pengalaman kerja profesional di kantor pusat perbankan.",
+          "Merancang dan membangun sistem presensi serta pelaporan harian berbasis web menggunakan metode pengembangan Prototyping.",
+        ],
+        skillTags: ["Prototyping", "Corporate System", "Web App"],
+      },
+      {
+        id: "exp-3",
+        role: "Frontend Developer",
+        company: "SPARK - Techofest",
+        duration: "Okt 2024",
+        description: [
+          "Berkontribusi sebagai Frontend Developer pada proyek SPARK, sebuah platform AI Generatif edukatif yang diikutkan dalam event Techofest.",
+          "Membangun antarmuka website utama SPARK, termasuk fitur Chatbot AI interaktif serta halaman About dan Team Profil yang responsif.",
+        ],
+        skillTags: ["React/Next.js", "AI Integration", "Chatbot UI"],
+      },
+      {
+        id: "exp-4",
+        role: "Software Engineer",
+        company: "Proyek Akademik JTE",
+        duration: "2024",
+        description: [
+          "Sistem Manajemen Ruang Kelas: membangun website penjadwalan dan peminjaman ruang kelas dengan arsitektur multi-role (Superadmin, Admin, User) dan fitur rating.",
+          "Aplikasi Manajemen Restoran: mengembangkan aplikasi desktop kasir/manajemen restoran dengan 3 peran pengguna (Admin, Chef, Pelayan).",
+        ],
+        skillTags: ["Role-Based Auth", "Multi-level Access", "Desktop App", "Scheduling System"],
+      },
+    ],
   },
   projects: {
     eyebrow: "Proyek",

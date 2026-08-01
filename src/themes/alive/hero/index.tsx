@@ -6,7 +6,7 @@ import { useIntro } from "@/components/intro-provider";
 import { ScrambleText } from "@/components/scramble-text";
 import { FadeText } from "@/components/fade-text";
 import { siteConfig } from "@/lib/site-config";
-import { GradientText } from "./gradient-text";
+import { GradientText } from "../gradient-text";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const SPRING = { type: "spring", stiffness: 400, damping: 10 } as const;
@@ -62,7 +62,7 @@ export function Hero() {
             animate={introDone ? idleFloatSlow : undefined}
             transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
           >
-            <GradientText className="mt-4 block text-display font-bold">
+            <GradientText className="mt-4 block text-h1 sm:text-display font-bold">
               {siteConfig.name}
             </GradientText>
           </motion.div>

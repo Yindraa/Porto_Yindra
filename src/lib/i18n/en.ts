@@ -28,6 +28,53 @@ export const en: Dictionary = {
       { label: "Focus", value: "Web, mobile & desktop" },
       { label: "Currently", value: "Fresh Graduate & Software Engineer" },
     ],
+    timelineLabel: "Journey",
+    timeline: [
+      {
+        id: "exp-1",
+        role: "Lead Web Developer (Community Service)",
+        company: "Leilem Village, Minahasa",
+        duration: "Oct 2025 - Present",
+        description: [
+          "Led the development of a village profile website as part of a university community service program.",
+          "Built a digital catalog to promote local MSMEs, aiding in rural economic digitization.",
+        ],
+        skillTags: ["Next.js", "Leadership", "Fullstack", "Supabase"],
+      },
+      {
+        id: "exp-2",
+        role: "Web Developer Intern",
+        company: "PT. Bank SulutGo (Funding Marketing)",
+        duration: "Sep 2025",
+        description: [
+          "Gained professional work experience at a corporate banking headquarters.",
+          "Designed and built a web-based attendance and daily reporting system using the Prototyping method.",
+        ],
+        skillTags: ["Prototyping", "Corporate System", "Web App"],
+      },
+      {
+        id: "exp-3",
+        role: "Frontend Developer",
+        company: "SPARK - Techofest",
+        duration: "Oct 2024",
+        description: [
+          "Contributed as a Frontend Developer for SPARK, an educational Generative AI platform showcased at Techofest.",
+          "Built the main web interface, including the interactive AI Chatbot, About, and Team pages.",
+        ],
+        skillTags: ["React/Next.js", "AI Integration", "Chatbot UI"],
+      },
+      {
+        id: "exp-4",
+        role: "Software Engineer",
+        company: "JTE Academic Projects",
+        duration: "2024",
+        description: [
+          "Classroom Management System: built a scheduling and booking website with a multi-role architecture (Superadmin, Admin, User) and a rating system.",
+          "Restaurant Management App: developed a desktop app with 3-role authentication (Admin, Chef, Waiter).",
+        ],
+        skillTags: ["Role-Based Auth", "Multi-level Access", "Desktop App", "Scheduling System"],
+      },
+    ],
   },
   projects: {
     eyebrow: "Projects",

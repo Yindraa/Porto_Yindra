@@ -20,6 +20,15 @@ export interface Dictionary {
       label: string;
       value: string;
     }[];
+    timelineLabel: string;
+    timeline: {
+      id: string;
+      role: string;
+      company: string;
+      duration: string;
+      description: string[];
+      skillTags: string[];
+    }[];
   };
   projects: {
     eyebrow: string;

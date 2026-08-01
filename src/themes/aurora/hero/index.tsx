@@ -42,7 +42,7 @@ export function Hero() {
         initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
         animate={introDone ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
         transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
-        className="mt-4 max-w-3xl text-display text-foreground"
+        className="mt-4 max-w-3xl text-h1 sm:text-display text-foreground"
       >
         {siteConfig.name}
       </motion.h1>
