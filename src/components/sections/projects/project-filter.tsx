@@ -5,23 +5,23 @@ import { ScrambleText } from "@/components/scramble-text";
 import { cn } from "@/lib/cn";
 
 export function ProjectFilter({
-  categories,
-  active,
+  options,
+  activeKey,
   onChange,
 }: {
-  categories: string[];
-  active: string;
-  onChange: (category: string) => void;
+  options: { key: string; label: string }[];
+  activeKey: string;
+  onChange: (key: string) => void;
 }) {
   return (
     <div className="flex flex-wrap gap-2">
-      {categories.map((category) => {
-        const isActive = active === category;
+      {options.map((option) => {
+        const isActive = activeKey === option.key;
         return (
           <button
-            key={category}
+            key={option.key}
             type="button"
-            onClick={() => onChange(category)}
+            onClick={() => onChange(option.key)}
             aria-pressed={isActive}
             className={cn(
               "relative rounded-full border px-3.5 py-1.5 text-small transition-colors duration-fast ease-standard",
@@ -41,7 +41,7 @@ export function ProjectFilter({
                 isActive ? "text-accent-foreground" : "text-foreground-muted hover:text-foreground",
               )}
             >
-              <ScrambleText text={category} />
+              <ScrambleText text={option.label} />
             </span>
           </button>
         );

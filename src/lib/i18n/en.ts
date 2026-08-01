@@ -43,6 +43,7 @@ export const en: Dictionary = {
         id: "eco-quest",
         title: "Eco-Quest",
         category: "Mobile App",
+        categoryKey: "mobile-app",
         image: "/proyek/p6-1.jpeg",
         gallery: ["/proyek/p6-2.jpeg", "/proyek/p6-3.jpeg"],
         description:
@@ -62,6 +63,7 @@ export const en: Dictionary = {
         id: "minutscape",
         title: "MINUTscape",
         category: "Web App",
+        categoryKey: "web-app",
         image: "/proyek/p5-1.jpeg",
         gallery: ["/proyek/p5-2.jpeg", "/proyek/p5-3.jpeg"],
         description:
@@ -75,6 +77,7 @@ export const en: Dictionary = {
         id: "desa-leilem",
         title: "Desa Leilem Profile",
         category: "Web App",
+        categoryKey: "web-app",
         image: "/about/leilem-1.jpeg",
         gallery: ["/about/leilem-1.jpeg", "/about/leilem-2.jpeg"],
         description:
@@ -88,6 +91,7 @@ export const en: Dictionary = {
         id: "spark",
         title: "SPARK AI Platform",
         category: "AI Platform",
+        categoryKey: "ai-platform",
         image:
           "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop",
         gallery: [
@@ -105,6 +109,7 @@ export const en: Dictionary = {
         id: "jte-management",
         title: "JTE Management System",
         category: "Web App",
+        categoryKey: "web-app",
         image: "/about/jte-4.jpeg",
         gallery: [
           "/proyek/p2-1.jpeg",
@@ -121,6 +126,7 @@ export const en: Dictionary = {
         id: "restomanager",
         title: "RestoManager Desktop",
         category: "Desktop App",
+        categoryKey: "desktop-app",
         image: "/about/jte-1.jpeg",
         gallery: ["/about/jte-2.jpeg", "/about/jte-3.jpeg"],
         description:
@@ -134,26 +140,62 @@ export const en: Dictionary = {
   skills: {
     eyebrow: "Skills",
     heading: "Tools of the craft.",
-    groups: [
+    categoryLabels: {
+      frontend: "Frontend",
+      mobileDesktop: "Mobile & Desktop",
+      backend: "Backend",
+      database: "Database",
+      design: "Design",
+      tools: "Tools",
+    },
+    certificatesLabel: "Certifications",
+    certificates: [
       {
-        category: "Languages",
-        items: ["TypeScript", "JavaScript", "Python", "Go"],
+        title: "C++ Course",
+        issuer: "Sololearn",
+        date: "Nov 2022",
+        credentialUrl: "/sertifikat/serti-1.png",
       },
       {
-        category: "Frontend",
-        items: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
+        title: "Frontend Developer - SPARK Project",
+        issuer: "UNITY (TECHOFEST)",
+        date: "Nov 2024",
+        credentialUrl: "/sertifikat/serti-3.jpeg",
       },
       {
-        category: "Backend",
-        items: ["Node.js", "PostgreSQL", "Redis", "REST / gRPC"],
+        title: "Project Planning with AI",
+        issuer: "Sololearn",
+        date: "May 2025",
+        credentialUrl: "/sertifikat/serti-2.png",
       },
-      { category: "Tooling", items: ["Docker", "CI/CD", "Git", "Testing"] },
+      {
+        title: "Intro to Software Engineering",
+        issuer: "RevoU",
+        date: "Jan 2026",
+        credentialUrl: "/sertifikat/serti-4.jpeg",
+      },
     ],
   },
   contact: {
     eyebrow: "Contact",
     heading: "Let's build something worth using.",
-    body: "Placeholder - a short line inviting people to reach out, plus your preferred channel.",
+    body: "Currently open to new opportunities - feel free to reach out if you'd like to work together, or just say hello.",
+    localTimeLabel: "Local time",
+    orDivider: "Or connect directly",
+    downloadCv: "Download CV",
+    form: {
+      nameLabel: "Name",
+      namePlaceholder: "Your name",
+      emailLabel: "Email",
+      emailPlaceholder: "you@example.com",
+      messageLabel: "Message",
+      messagePlaceholder: "What's on your mind?",
+      submit: "Send Message",
+      submitting: "Sending...",
+      successTitle: "Message Sent!",
+      successBody: "Thank you for reaching out. I'll get back to you as soon as possible.",
+      errorBody: "Something went wrong. Please try again or email me directly.",
+    },
     links: [
       { label: "Email", href: "mailto:madenarayindra23@gmail.com" },
       { label: "GitHub", href: "https://github.com/Yindraa" },

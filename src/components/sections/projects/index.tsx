@@ -14,23 +14,28 @@ import type { Dictionary } from "@/lib/i18n/types";
 type ProjectItem = Dictionary["projects"]["items"][number];
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const ALL_KEY = "all";
 
 export function Projects() {
   const { t } = useLanguage();
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeCategoryKey, setActiveCategoryKey] = useState<string>(ALL_KEY);
   const [openProject, setOpenProject] = useState<ProjectItem | null>(null);
 
-  const activeFilter = activeCategory ?? t.projects.filterAll;
-
-  const categories = useMemo(() => {
-    const unique = Array.from(new Set(t.projects.items.map((p) => p.category)));
-    return [t.projects.filterAll, ...unique];
+  const filterOptions = useMemo(() => {
+    const seen = new Map<string, string>();
+    for (const item of t.projects.items) {
+      if (!seen.has(item.categoryKey)) seen.set(item.categoryKey, item.category);
+    }
+    return [
+      { key: ALL_KEY, label: t.projects.filterAll },
+      ...Array.from(seen, ([key, label]) => ({ key, label })),
+    ];
   }, [t.projects.items, t.projects.filterAll]);
 
   const filtered = useMemo(() => {
-    if (activeFilter === t.projects.filterAll) return t.projects.items;
-    return t.projects.items.filter((p) => p.category === activeFilter);
-  }, [t.projects.items, activeFilter, t.projects.filterAll]);
+    if (activeCategoryKey === ALL_KEY) return t.projects.items;
+    return t.projects.items.filter((p) => p.categoryKey === activeCategoryKey);
+  }, [t.projects.items, activeCategoryKey]);
 
   const featured = filtered.find((p) => p.featured);
   const rest = filtered.filter((p) => !p.featured);
@@ -51,17 +56,19 @@ export function Projects() {
 
       <Reveal delay={0.15} className="mt-8">
         <ProjectFilter
-          categories={categories}
-          active={activeFilter}
-          onChange={(category) =>
-            setActiveCategory(category === t.projects.filterAll ? null : category)
-          }
+          options={filterOptions}
+          activeKey={activeCategoryKey}
+          onChange={setActiveCategoryKey}
         />
       </Reveal>
 
+      {/* Keyed by the stable category key (not the translated label), so a
+          language switch doesn't look like a filter change and remount the
+          whole grid instead of letting each ScrambleText/FadeText animate
+          its own text change. */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={activeFilter}
+          key={activeCategoryKey}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

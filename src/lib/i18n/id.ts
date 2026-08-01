@@ -43,6 +43,7 @@ export const id: Dictionary = {
         id: "eco-quest",
         title: "Eco-Quest",
         category: "Aplikasi Mobile",
+        categoryKey: "mobile-app",
         image: "/proyek/p6-1.jpeg",
         gallery: ["/proyek/p6-2.jpeg", "/proyek/p6-3.jpeg"],
         description:
@@ -56,6 +57,7 @@ export const id: Dictionary = {
         id: "minutscape",
         title: "MINUTscape",
         category: "Aplikasi Web",
+        categoryKey: "web-app",
         image: "/proyek/p5-1.jpeg",
         gallery: ["/proyek/p5-2.jpeg", "/proyek/p5-3.jpeg"],
         description:
@@ -69,6 +71,7 @@ export const id: Dictionary = {
         id: "desa-leilem",
         title: "Profil Desa Leilem",
         category: "Aplikasi Web",
+        categoryKey: "web-app",
         image: "/about/leilem-1.jpeg",
         gallery: ["/about/leilem-1.jpeg", "/about/leilem-2.jpeg"],
         description:
@@ -82,6 +85,7 @@ export const id: Dictionary = {
         id: "spark",
         title: "SPARK AI Platform",
         category: "Platform AI",
+        categoryKey: "ai-platform",
         image:
           "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop",
         gallery: [
@@ -98,6 +102,7 @@ export const id: Dictionary = {
         id: "jte-management",
         title: "Sistem Manajemen JTE",
         category: "Aplikasi Web",
+        categoryKey: "web-app",
         image: "/about/jte-4.jpeg",
         gallery: ["/proyek/p2-1.jpeg", "/proyek/p2-2.jpeg", "/proyek/p2-3.jpeg"],
         description:
@@ -110,6 +115,7 @@ export const id: Dictionary = {
         id: "restomanager",
         title: "RestoManager Desktop",
         category: "Aplikasi Desktop",
+        categoryKey: "desktop-app",
         image: "/about/jte-1.jpeg",
         gallery: ["/about/jte-2.jpeg", "/about/jte-3.jpeg"],
         description:
@@ -123,26 +129,62 @@ export const id: Dictionary = {
   skills: {
     eyebrow: "Keahlian",
     heading: "Perkakas keahlian.",
-    groups: [
+    categoryLabels: {
+      frontend: "Frontend",
+      mobileDesktop: "Mobile & Desktop",
+      backend: "Backend",
+      database: "Basis Data",
+      design: "Desain",
+      tools: "Perkakas",
+    },
+    certificatesLabel: "Sertifikat",
+    certificates: [
       {
-        category: "Bahasa Pemrograman",
-        items: ["TypeScript", "JavaScript", "Python", "Go"],
+        title: "C++ Course",
+        issuer: "Sololearn",
+        date: "Nov 2022",
+        credentialUrl: "/sertifikat/serti-1.png",
       },
       {
-        category: "Frontend",
-        items: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
+        title: "Frontend Developer - SPARK Project",
+        issuer: "UNITY (TECHOFEST)",
+        date: "Nov 2024",
+        credentialUrl: "/sertifikat/serti-3.jpeg",
       },
       {
-        category: "Backend",
-        items: ["Node.js", "PostgreSQL", "Redis", "REST / gRPC"],
+        title: "Project Planning with AI",
+        issuer: "Sololearn",
+        date: "Mei 2025",
+        credentialUrl: "/sertifikat/serti-2.png",
       },
-      { category: "Perkakas", items: ["Docker", "CI/CD", "Git", "Testing"] },
+      {
+        title: "Intro to Software Engineering",
+        issuer: "RevoU",
+        date: "Jan 2026",
+        credentialUrl: "/sertifikat/serti-4.jpeg",
+      },
     ],
   },
   contact: {
     eyebrow: "Kontak",
     heading: "Mari membangun sesuatu yang berarti.",
-    body: "Placeholder - kalimat singkat mengundang orang untuk menghubungi, beserta kanal yang kamu utamakan.",
+    body: "Saat ini terbuka untuk peluang baru - jangan ragu menghubungi kalau ingin berkolaborasi, atau sekadar menyapa.",
+    localTimeLabel: "Waktu lokal",
+    orDivider: "Atau hubungi langsung",
+    downloadCv: "Unduh CV",
+    form: {
+      nameLabel: "Nama",
+      namePlaceholder: "Nama kamu",
+      emailLabel: "Email",
+      emailPlaceholder: "kamu@contoh.com",
+      messageLabel: "Pesan",
+      messagePlaceholder: "Ada yang ingin disampaikan?",
+      submit: "Kirim Pesan",
+      submitting: "Mengirim...",
+      successTitle: "Pesan Terkirim!",
+      successBody: "Terima kasih telah menghubungi. Saya akan segera membalas pesan Anda.",
+      errorBody: "Terjadi kesalahan. Coba lagi atau kirim email langsung.",
+    },
     links: [
       { label: "Email", href: "mailto:madenarayindra23@gmail.com" },
       { label: "GitHub", href: "https://github.com/Yindraa" },

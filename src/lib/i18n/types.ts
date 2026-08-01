@@ -34,6 +34,8 @@ export interface Dictionary {
       id: string;
       title: string;
       category: string;
+      /** Language-independent category key, used for filter matching/keying instead of the translated label. */
+      categoryKey: string;
       description: string;
       image: string;
       gallery: string[];
@@ -47,15 +49,42 @@ export interface Dictionary {
   skills: {
     eyebrow: string;
     heading: string;
-    groups: {
-      category: string;
-      items: string[];
+    categoryLabels: {
+      frontend: string;
+      mobileDesktop: string;
+      backend: string;
+      database: string;
+      design: string;
+      tools: string;
+    };
+    certificatesLabel: string;
+    certificates: {
+      title: string;
+      issuer: string;
+      date: string;
+      credentialUrl: string;
     }[];
   };
   contact: {
     eyebrow: string;
     heading: string;
     body: string;
+    localTimeLabel: string;
+    orDivider: string;
+    downloadCv: string;
+    form: {
+      nameLabel: string;
+      namePlaceholder: string;
+      emailLabel: string;
+      emailPlaceholder: string;
+      messageLabel: string;
+      messagePlaceholder: string;
+      submit: string;
+      submitting: string;
+      successTitle: string;
+      successBody: string;
+      errorBody: string;
+    };
     links: {
       label: string;
       href: string;
