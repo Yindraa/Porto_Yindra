@@ -15,16 +15,33 @@ export interface Dictionary {
   about: {
     eyebrow: string;
     heading: string;
-    body: string;
+    body: string[];
+    facts: {
+      label: string;
+      value: string;
+    }[];
   };
   projects: {
     eyebrow: string;
     heading: string;
+    filterAll: string;
+    featuredLabel: string;
+    statusLabels: {
+      live: string;
+      inProgress: string;
+    };
     items: {
+      id: string;
       title: string;
+      category: string;
       description: string;
+      image: string;
+      gallery: string[];
       tags: string[];
-      href: string;
+      status: "completed" | "in-progress" | "live";
+      featured?: boolean;
+      githubUrl?: string;
+      liveUrl?: string;
     }[];
   };
   skills: {

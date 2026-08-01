@@ -8,7 +8,7 @@ export function Skills() {
   const { t } = useLanguage();
 
   return (
-    <section id="skills" className="mx-auto w-full max-w-3xl px-6 py-28">
+    <section id="skills" className="mx-auto w-full max-w-3xl scroll-mt-24 px-6 py-28">
       <Reveal>
         <p className="text-small font-medium tracking-tight text-accent">
           <ScrambleText text={t.skills.eyebrow} />

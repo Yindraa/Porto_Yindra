@@ -9,7 +9,7 @@ export function Contact() {
   const { t } = useLanguage();
 
   return (
-    <section id="contact" className="mx-auto w-full max-w-3xl px-6 py-28">
+    <section id="contact" className="mx-auto w-full max-w-3xl scroll-mt-24 px-6 py-28">
       <Reveal>
         <div className="glass flex flex-col items-center rounded-xl px-8 py-16 text-center">
           <p className="text-small font-medium tracking-tight text-accent">

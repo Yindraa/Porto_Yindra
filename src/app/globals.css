@@ -172,6 +172,10 @@
   box-shadow: var(--glass-shadow);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--canvas);
   color: var(--foreground);
