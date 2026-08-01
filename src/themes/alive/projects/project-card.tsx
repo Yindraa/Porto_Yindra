@@ -15,6 +15,8 @@ type ProjectItem = Dictionary["projects"]["items"][number];
 type StatusLabels = Dictionary["projects"]["statusLabels"];
 
 const ROTATE = ["-rotate-2", "rotate-1", "-rotate-1", "rotate-2"];
+const SHAPES = ["alive-shape-1", "alive-shape-2", "alive-shape-3"];
+const ACCENT_BADGE = ["bg-accent/10 text-accent", "bg-accent-2/10 text-accent-2", "bg-accent-3/10 text-accent-3"];
 
 /**
  * Same signature interaction as the About timeline/fact cards: cursor-tilt
@@ -48,10 +50,15 @@ export function ProjectCard({
   const hasLive = Boolean(project.liveUrl);
 
   return (
-    <Reveal delay={delay}>
+    <Reveal delay={delay} className="mb-5 break-inside-avoid">
       <motion.div ref={ref} style={{ y }} className={ROTATE[index % ROTATE.length]}>
         <TiltCard maxTilt={6}>
-          <div className="glass group flex h-full flex-col overflow-hidden rounded-lg">
+          <div
+            className={cn(
+              "glass group flex h-full flex-col overflow-hidden",
+              SHAPES[index % SHAPES.length],
+            )}
+          >
             <button
               type="button"
               onClick={onOpenGallery}
@@ -106,7 +113,10 @@ export function ProjectCard({
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-accent-soft px-2.5 py-1 text-caption text-accent"
+                    className={cn(
+                      "rounded-full px-2.5 py-1 text-caption",
+                      ACCENT_BADGE[index % ACCENT_BADGE.length],
+                    )}
                   >
                     {tag}
                   </span>

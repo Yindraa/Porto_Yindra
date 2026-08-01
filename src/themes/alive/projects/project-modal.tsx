@@ -77,7 +77,7 @@ export function ProjectModal({
             exit={{ opacity: 0, y: 24, scale: 0.9, rotate: -2 }}
             transition={SPRING}
             onClick={(event) => event.stopPropagation()}
-            className="glass-solid relative flex max-h-[85vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl sm:flex-row"
+            className="glass-solid alive-shape-3 relative flex max-h-[85vh] w-full max-w-3xl flex-col overflow-hidden sm:flex-row"
           >
             <button
               type="button"
@@ -168,7 +168,7 @@ export function ProjectModal({
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-accent-soft px-2.5 py-1 text-caption text-accent"
+                    className="rounded-full bg-accent-3/10 px-2.5 py-1 text-caption text-accent-3"
                   >
                     {tag}
                   </span>

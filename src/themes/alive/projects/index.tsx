@@ -58,7 +58,7 @@ export function Projects() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25, ease: EASE }}
-          className="mt-8 grid gap-5 sm:grid-cols-2"
+          className="mt-8 columns-1 gap-5 sm:columns-2"
         >
           {featured && (
             <FeaturedProjectCard
@@ -68,35 +68,16 @@ export function Projects() {
               onOpenGallery={() => setOpenProject(featured)}
             />
           )}
-          {rest.map((project, i) => {
-            const isLoneTrailing = rest.length % 2 === 1 && i === rest.length - 1;
-            const delay = 0.1 + i * 0.06;
-
-            if (isLoneTrailing) {
-              return (
-                <FeaturedProjectCard
-                  key={project.id}
-                  project={project}
-                  statusLabels={t.projects.statusLabels}
-                  featuredLabel={t.projects.featuredLabel}
-                  isFeatured={false}
-                  delay={delay}
-                  onOpenGallery={() => setOpenProject(project)}
-                />
-              );
-            }
-
-            return (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                statusLabels={t.projects.statusLabels}
-                index={i}
-                delay={delay}
-                onOpenGallery={() => setOpenProject(project)}
-              />
-            );
-          })}
+          {rest.map((project, i) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              statusLabels={t.projects.statusLabels}
+              index={i}
+              delay={0.1 + i * 0.06}
+              onOpenGallery={() => setOpenProject(project)}
+            />
+          ))}
         </motion.div>
       </AnimatePresence>
 

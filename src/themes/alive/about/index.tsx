@@ -21,6 +21,14 @@ const FACT_ICONS = [MapPin, Layers, GraduationCap];
 const FACT_ROTATE = ["-rotate-2", "rotate-1", "-rotate-1"];
 const TIMELINE_ROTATE = ["-rotate-1", "rotate-1", "-rotate-2", "rotate-2"];
 
+/** Alive's multi-color identity — cycled by index instead of a single
+ * --accent everywhere, so cards read as genuinely different, not just
+ * re-skinned. Kept off small pills' shape (see .alive-shape-* in
+ * globals.css), but their color still cycles through this palette. */
+const ACCENT_TEXT = ["text-accent", "text-accent-2", "text-accent-3"];
+const ACCENT_BADGE = ["bg-accent/10 text-accent", "bg-accent-2/10 text-accent-2", "bg-accent-3/10 text-accent-3"];
+const SHAPES = ["alive-shape-1", "alive-shape-2", "alive-shape-3"];
+
 export function About() {
   const { t } = useLanguage();
   const prefersReducedMotion = useReducedMotion();
@@ -61,7 +69,7 @@ export function About() {
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               className="sm:-rotate-2"
             >
-              <TiltCard className="relative aspect-4/5 w-full overflow-hidden rounded-lg shadow-soft">
+              <TiltCard className={cn("relative aspect-4/5 w-full overflow-hidden shadow-soft", SHAPES[0])}>
                 <Image
                   src="/about/4x6.jpg.jpeg"
                   alt={siteConfig.name}
@@ -138,7 +146,9 @@ function FactChip({
         <TiltCard maxTilt={6}>
           <SpotlightPanel className="glass rounded-full px-4 py-2.5">
             <div className="flex items-center gap-2">
-              {Icon && <Icon size={14} strokeWidth={1.75} className="text-accent" />}
+              {Icon && (
+                <Icon size={14} strokeWidth={1.75} className={ACCENT_TEXT[index % ACCENT_TEXT.length]} />
+              )}
               <span className="text-caption text-foreground-subtle">
                 <ScrambleText text={label} />
               </span>
@@ -176,13 +186,22 @@ function TimelineCard({ item, index }: { item: TimelineItem; index: number }) {
         )}
       >
         <TiltCard maxTilt={5}>
-          <SpotlightPanel className="glass rounded-lg p-5">
+          <SpotlightPanel className={cn("glass p-5", SHAPES[index % SHAPES.length])}>
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h3 className="flex items-center gap-2 text-h3 text-foreground">
-                <Briefcase size={16} strokeWidth={1.75} className="text-accent" />
+                <Briefcase
+                  size={16}
+                  strokeWidth={1.75}
+                  className={ACCENT_TEXT[index % ACCENT_TEXT.length]}
+                />
                 <ScrambleText text={item.role} />
               </h3>
-              <span className="rounded-full bg-accent-soft px-2.5 py-1 text-caption text-accent">
+              <span
+                className={cn(
+                  "rounded-full px-2.5 py-1 text-caption",
+                  ACCENT_BADGE[index % ACCENT_BADGE.length],
+                )}
+              >
                 <ScrambleText text={item.duration} />
               </span>
             </div>
@@ -202,7 +221,10 @@ function TimelineCard({ item, index }: { item: TimelineItem; index: number }) {
               {item.skillTags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-accent-soft px-2.5 py-1 text-caption text-accent"
+                  className={cn(
+                    "rounded-full px-2.5 py-1 text-caption",
+                    ACCENT_BADGE[index % ACCENT_BADGE.length],
+                  )}
                 >
                   {tag}
                 </span>

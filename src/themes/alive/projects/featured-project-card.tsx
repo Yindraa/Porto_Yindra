@@ -13,30 +13,27 @@ import { GradientText } from "../gradient-text";
 type ProjectItem = Dictionary["projects"]["items"][number];
 type StatusLabels = Dictionary["projects"]["statusLabels"];
 
+const ACCENT_BADGE = "bg-accent-2/10 text-accent-2";
+
 export function FeaturedProjectCard({
   project,
   statusLabels,
   featuredLabel,
   onOpenGallery,
-  isFeatured = true,
-  delay = 0,
 }: {
   project: ProjectItem;
   statusLabels: StatusLabels;
   featuredLabel: string;
   onOpenGallery: () => void;
-  /** False when this wide layout is only used to fill a lone trailing card, not the true highlight. */
-  isFeatured?: boolean;
-  delay?: number;
 }) {
   const hasGithub = Boolean(project.githubUrl && project.githubUrl !== "#");
   const hasLive = Boolean(project.liveUrl);
 
   return (
-    <Reveal className="sm:col-span-2" delay={delay}>
+    <Reveal className="alive-span-all mb-5">
       <div className="sm:-rotate-1">
         <TiltCard maxTilt={4}>
-          <div className="glass group flex flex-col overflow-hidden rounded-lg sm:flex-row">
+          <div className="glass alive-shape-2 group flex flex-col overflow-hidden sm:flex-row">
             <button
               type="button"
               onClick={onOpenGallery}
@@ -58,12 +55,10 @@ export function FeaturedProjectCard({
             <div className="flex flex-1 flex-col p-6 sm:p-8">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  {isFeatured && (
-                    <p className="text-caption font-medium text-accent">
-                      <ScrambleText text={featuredLabel} />
-                    </p>
-                  )}
-                  <p className={cn("text-caption text-foreground-subtle", isFeatured && "mt-1")}>
+                  <p className="text-caption font-medium text-accent">
+                    <ScrambleText text={featuredLabel} />
+                  </p>
+                  <p className="mt-1 text-caption text-foreground-subtle">
                     <ScrambleText text={project.category} />
                   </p>
                 </div>
@@ -78,17 +73,11 @@ export function FeaturedProjectCard({
                 )}
               </div>
 
-              {isFeatured ? (
-                // Raw text, not <ScrambleText>: background-clip:text needs the
-                // gradient span to own the text node directly (see About heading).
-                <GradientText className="mt-2 block text-h2 font-bold">
-                  {project.title}
-                </GradientText>
-              ) : (
-                <h3 className="mt-2 text-h2 text-foreground">
-                  <ScrambleText text={project.title} />
-                </h3>
-              )}
+              {/* Raw text, not <ScrambleText>: background-clip:text needs the
+                  gradient span to own the text node directly (see About heading). */}
+              <GradientText className="mt-2 block text-h2 font-bold">
+                {project.title}
+              </GradientText>
 
               <p className="mt-4 flex-1 text-small leading-relaxed text-foreground-muted">
                 <FadeText text={project.description} />
@@ -98,7 +87,7 @@ export function FeaturedProjectCard({
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-accent-soft px-2.5 py-1 text-caption text-accent"
+                    className={cn("rounded-full px-2.5 py-1 text-caption", ACCENT_BADGE)}
                   >
                     {tag}
                   </span>
