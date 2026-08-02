@@ -189,11 +189,19 @@ function TimelineCard({ item, index }: { item: TimelineItem; index: number }) {
           <SpotlightPanel className={cn("glass p-5", SHAPES[index % SHAPES.length])}>
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h3 className="flex items-center gap-2 text-h3 text-foreground">
-                <Briefcase
-                  size={16}
-                  strokeWidth={1.75}
-                  className={ACCENT_TEXT[index % ACCENT_TEXT.length]}
-                />
+                {item.type === "education" ? (
+                  <GraduationCap
+                    size={16}
+                    strokeWidth={1.75}
+                    className={ACCENT_TEXT[index % ACCENT_TEXT.length]}
+                  />
+                ) : (
+                  <Briefcase
+                    size={16}
+                    strokeWidth={1.75}
+                    className={ACCENT_TEXT[index % ACCENT_TEXT.length]}
+                  />
+                )}
                 <ScrambleText text={item.role} />
               </h3>
               <span

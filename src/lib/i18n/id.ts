@@ -16,6 +16,12 @@ export const id: Dictionary = {
     ctaPrimary: "Lihat Proyek",
     ctaSecondary: "Hubungi Saya",
   },
+  stats: {
+    projectsLabel: "Proyek",
+    skillsLabel: "Keahlian Teknis",
+    certificatesLabel: "Sertifikat",
+    experienceLabel: "Pengalaman Kerja",
+  },
   about: {
     eyebrow: "Tentang",
     heading: "Membangun solusi yang utuh.",
@@ -74,6 +80,15 @@ export const id: Dictionary = {
           "Aplikasi Manajemen Restoran: mengembangkan aplikasi desktop kasir/manajemen restoran dengan 3 peran pengguna (Admin, Chef, Pelayan).",
         ],
         skillTags: ["Role-Based Auth", "Multi-level Access", "Desktop App", "Scheduling System"],
+      },
+      {
+        id: "edu-1",
+        role: "S1 Teknik Informatika",
+        company: "Universitas Sam Ratulangi, Manado",
+        duration: "2022 - 2026",
+        description: ["Lulus dengan predikat cumlaude, IPK 3.89/4.00."],
+        skillTags: ["Cumlaude", "IPK 3.89"],
+        type: "education",
       },
     ],
   },

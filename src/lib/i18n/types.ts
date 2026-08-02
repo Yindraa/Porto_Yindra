@@ -13,6 +13,12 @@ export interface Dictionary {
     ctaPrimary: string;
     ctaSecondary: string;
   };
+  stats: {
+    projectsLabel: string;
+    skillsLabel: string;
+    certificatesLabel: string;
+    experienceLabel: string;
+  };
   about: {
     eyebrow: string;
     heading: string;
@@ -29,6 +35,9 @@ export interface Dictionary {
       duration: string;
       description: string[];
       skillTags: string[];
+      /** Distinguishes the education entry so it can get its own icon
+       * instead of the work-experience briefcase. Defaults to work. */
+      type?: "work" | "education";
     }[];
   };
   services: {

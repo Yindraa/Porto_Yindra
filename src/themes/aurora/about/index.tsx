@@ -90,7 +90,11 @@ export function About() {
           {t.about.timeline.map((item, i) => (
             <Reveal key={item.id} delay={i * 0.08} className="relative">
               <span className="absolute -left-7.5 top-1.5 flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full border-2 border-accent bg-canvas sm:-left-9.5">
-                <Briefcase size={11} strokeWidth={2} className="text-accent" />
+                {item.type === "education" ? (
+                  <GraduationCap size={11} strokeWidth={2} className="text-accent" />
+                ) : (
+                  <Briefcase size={11} strokeWidth={2} className="text-accent" />
+                )}
               </span>
 
               <p className="text-caption font-medium uppercase tracking-wide text-foreground-subtle">

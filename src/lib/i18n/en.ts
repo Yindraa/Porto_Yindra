@@ -16,6 +16,12 @@ export const en: Dictionary = {
     ctaPrimary: "View Projects",
     ctaSecondary: "Get in Touch",
   },
+  stats: {
+    projectsLabel: "Projects",
+    skillsLabel: "Technical Skills",
+    certificatesLabel: "Certificates",
+    experienceLabel: "Work Experience",
+  },
   about: {
     eyebrow: "About",
     heading: "Building complete solutions.",
@@ -74,6 +80,15 @@ export const en: Dictionary = {
           "Restaurant Management App: developed a desktop app with 3-role authentication (Admin, Chef, Waiter).",
         ],
         skillTags: ["Role-Based Auth", "Multi-level Access", "Desktop App", "Scheduling System"],
+      },
+      {
+        id: "edu-1",
+        role: "B.Eng. in Informatics Engineering",
+        company: "Sam Ratulangi University, Manado",
+        duration: "2022 - 2026",
+        description: ["Graduated cum laude with a 3.89/4.00 GPA."],
+        skillTags: ["Cum Laude", "3.89 GPA"],
+        type: "education",
       },
     ],
   },
