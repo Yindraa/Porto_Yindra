@@ -3,6 +3,7 @@ import type { Dictionary } from "./types";
 export const en: Dictionary = {
   nav: {
     about: "About",
+    services: "Services",
     projects: "Projects",
     skills: "Skills",
     contact: "Contact",
@@ -73,6 +74,32 @@ export const en: Dictionary = {
           "Restaurant Management App: developed a desktop app with 3-role authentication (Admin, Chef, Waiter).",
         ],
         skillTags: ["Role-Based Auth", "Multi-level Access", "Desktop App", "Scheduling System"],
+      },
+    ],
+  },
+  services: {
+    eyebrow: "Services",
+    heading: "What I can help with.",
+    items: [
+      {
+        title: "Frontend Engineering",
+        desc: "Building responsive, interactive interfaces with high performance.",
+        relatedSkills: ["Next.js", "React", "Tailwind", "TypeScript", "Framer"],
+      },
+      {
+        title: "Mobile & Desktop Apps",
+        desc: "Developing cross-platform applications for Android, iOS, and Desktop.",
+        relatedSkills: ["Flutter", "React Native", "Electron"],
+      },
+      {
+        title: "System Architecture",
+        desc: "Designing efficient and secure database structures and system relations.",
+        relatedSkills: ["Node.js", "Prisma", "Supabase", "PostgreSQL", "MySQL"],
+      },
+      {
+        title: "UI/UX & Tools",
+        desc: "Translating designs into precise code and managing version control.",
+        relatedSkills: ["Figma", "Git", "Docker", "Postman", "VS Code"],
       },
     ],
   },

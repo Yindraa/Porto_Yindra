@@ -9,6 +9,7 @@ export function Footer() {
 
   const navItems = [
     { href: "#about", label: t.nav.about },
+    { href: "#services", label: t.nav.services },
     { href: "#projects", label: t.nav.projects },
     { href: "#skills", label: t.nav.skills },
     { href: "#contact", label: t.nav.contact },

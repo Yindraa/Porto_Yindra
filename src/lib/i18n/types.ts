@@ -1,6 +1,7 @@
 export interface Dictionary {
   nav: {
     about: string;
+    services: string;
     projects: string;
     skills: string;
     contact: string;
@@ -28,6 +29,15 @@ export interface Dictionary {
       duration: string;
       description: string[];
       skillTags: string[];
+    }[];
+  };
+  services: {
+    eyebrow: string;
+    heading: string;
+    items: {
+      title: string;
+      desc: string;
+      relatedSkills: string[];
     }[];
   };
   projects: {

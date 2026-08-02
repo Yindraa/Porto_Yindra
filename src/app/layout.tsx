@@ -26,10 +26,16 @@ const fredoka = Fredoka({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://madenarayindra.vercel.app"),
   title: "Made Narayindra — Full Stack Developer",
   description: "Personal portfolio.",
   icons: {
     icon: "/logo-portfolio.png",
+  },
+  twitter: {
+    // Without this, Twitter/X falls back to a small square thumbnail
+    // instead of the generated opengraph-image/twitter-image banner.
+    card: "summary_large_image",
   },
 };
 

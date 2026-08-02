@@ -15,7 +15,7 @@ import { useScrolled } from "@/lib/hooks/use-scrolled";
 import { cn } from "@/lib/cn";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const SECTION_IDS = ["about", "projects", "skills", "contact"] as const;
+const SECTION_IDS = ["about", "services", "projects", "skills", "contact"] as const;
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -26,6 +26,7 @@ export function Navbar() {
 
   const navItems = [
     { id: "about", href: "#about", label: t.nav.about },
+    { id: "services", href: "#services", label: t.nav.services },
     { id: "projects", href: "#projects", label: t.nav.projects },
     { id: "skills", href: "#skills", label: t.nav.skills },
     { id: "contact", href: "#contact", label: t.nav.contact },
@@ -36,7 +37,7 @@ export function Navbar() {
       {/* Relative wrapper: the dropdown below positions itself off this
           box's actual rendered height (top-full), instead of a guessed
           pixel offset that can drift out of sync with the bar's height. */}
-      <div className="relative w-full max-w-3xl">
+      <div className="relative w-full max-w-4xl">
         <div
           className={cn(
             "relative z-20 flex w-full items-center justify-between rounded-lg px-5 py-3 transition-colors duration-base ease-standard",
@@ -51,7 +52,7 @@ export function Navbar() {
             <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-foreground transition-transform duration-base ease-standard group-hover:scale-x-100" />
           </a>
 
-          <nav className="hidden items-center gap-7 sm:flex">
+          <nav className="hidden items-center gap-6 sm:flex">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
@@ -77,9 +78,10 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2">
-            {/* On mobile these move into the dropdown below instead, so the
-                bar itself stays down to just the logo + menu button. */}
-            <div className="hidden items-center gap-2 sm:flex">
+            {/* Below lg these move into the dropdown below instead — with 5
+                nav links now, keeping toggles inline any earlier than that
+                made the bar feel packed. */}
+            <div className="hidden items-center gap-2 lg:flex">
               <LanguageToggle />
               <VariantToggle />
               {variant === "aurora" && <ThemeToggle />}
@@ -89,7 +91,7 @@ export function Navbar() {
               onClick={() => setOpen((v) => !v)}
               aria-label="Toggle menu"
               aria-expanded={open}
-              className="flex h-9 w-9 items-center justify-center rounded-full text-foreground-muted transition-colors duration-fast ease-standard hover:bg-accent-soft hover:text-foreground sm:hidden"
+              className="flex h-9 w-9 items-center justify-center rounded-full text-foreground-muted transition-colors duration-fast ease-standard hover:bg-accent-soft hover:text-foreground lg:hidden"
             >
               {open ? <X size={18} strokeWidth={1.75} /> : <Menu size={18} strokeWidth={1.75} />}
             </button>
@@ -115,26 +117,32 @@ export function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.2, ease: EASE }}
-                className="glass-solid absolute inset-x-0 top-full z-20 mt-3 flex flex-col gap-1 rounded-lg p-3 sm:hidden"
+                className="glass-solid absolute inset-x-0 top-full z-20 mt-3 flex flex-col gap-1 rounded-lg p-3 lg:hidden"
               >
-                {navItems.map((item) => {
-                  const isActive = activeSection === item.id;
-                  return (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      className={cn(
-                        "rounded-md px-3 py-2 text-body transition-colors duration-fast ease-standard hover:bg-accent-soft hover:text-foreground",
-                        isActive ? "text-foreground" : "text-foreground-muted",
-                      )}
-                    >
-                      <ScrambleText text={item.label} />
-                    </a>
-                  );
-                })}
+                {/* Nav links are already visible in the bar itself from sm
+                    upward — only repeat them here below that, so the sm-lg
+                    range (where only the toggles are collapsed) doesn't
+                    show a redundant second copy of the same links. */}
+                <div className="flex flex-col gap-1 sm:hidden">
+                  {navItems.map((item) => {
+                    const isActive = activeSection === item.id;
+                    return (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className={cn(
+                          "rounded-md px-3 py-2 text-body transition-colors duration-fast ease-standard hover:bg-accent-soft hover:text-foreground",
+                          isActive ? "text-foreground" : "text-foreground-muted",
+                        )}
+                      >
+                        <ScrambleText text={item.label} />
+                      </a>
+                    );
+                  })}
+                </div>
 
-                <div className="mt-2 flex items-center justify-center gap-2 border-t border-border pt-3">
+                <div className="mt-2 flex items-center justify-center gap-2 border-t border-border pt-3 sm:mt-0 sm:border-t-0 sm:pt-0">
                   <LanguageToggle />
                   <VariantToggle />
                   {variant === "aurora" && <ThemeToggle />}

@@ -3,6 +3,7 @@ import type { Dictionary } from "./types";
 export const id: Dictionary = {
   nav: {
     about: "Tentang",
+    services: "Layanan",
     projects: "Proyek",
     skills: "Keahlian",
     contact: "Kontak",
@@ -73,6 +74,32 @@ export const id: Dictionary = {
           "Aplikasi Manajemen Restoran: mengembangkan aplikasi desktop kasir/manajemen restoran dengan 3 peran pengguna (Admin, Chef, Pelayan).",
         ],
         skillTags: ["Role-Based Auth", "Multi-level Access", "Desktop App", "Scheduling System"],
+      },
+    ],
+  },
+  services: {
+    eyebrow: "Layanan",
+    heading: "Yang bisa saya bantu.",
+    items: [
+      {
+        title: "Frontend Engineering",
+        desc: "Membangun antarmuka responsif dan interaktif dengan performa tinggi.",
+        relatedSkills: ["Next.js", "React", "Tailwind", "TypeScript", "Framer"],
+      },
+      {
+        title: "Mobile & Desktop Apps",
+        desc: "Mengembangkan aplikasi lintas platform untuk Android, iOS, dan Desktop.",
+        relatedSkills: ["Flutter", "React Native", "Electron"],
+      },
+      {
+        title: "System Architecture",
+        desc: "Merancang struktur database relasional dan manajemen backend yang efisien.",
+        relatedSkills: ["Node.js", "Prisma", "Supabase", "PostgreSQL", "MySQL"],
+      },
+      {
+        title: "UI/UX & Tools",
+        desc: "Menerjemahkan desain menjadi kode presisi serta manajemen versi.",
+        relatedSkills: ["Figma", "Git", "Postman", "VS Code"],
       },
     ],
   },

@@ -38,6 +38,13 @@ export function VariantProvider({ children }: { children: ReactNode }) {
   const setVariant = useCallback((next: Variant) => {
     setVariantState(next);
     localStorage.setItem(STORAGE_KEY, next);
+
+    // Section heights differ enough between themes that keeping the same
+    // pixel scroll offset can land mid-page in a visually broken spot.
+    // Scrolling back to the top makes a theme switch read as a deliberate
+    // reset instead.
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "instant" : "smooth" });
   }, []);
 
   return (

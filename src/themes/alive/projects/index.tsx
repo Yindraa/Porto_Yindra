@@ -7,7 +7,6 @@ import { ScrambleText } from "@/components/scramble-text";
 import { useProjectFilter } from "@/lib/hooks/use-project-filter";
 import { ProjectFilter } from "./project-filter";
 import { ProjectCard } from "./project-card";
-import { FeaturedProjectCard } from "./featured-project-card";
 import { ProjectModal } from "./project-modal";
 import { GradientText } from "../gradient-text";
 
@@ -49,8 +48,9 @@ export function Projects() {
 
       {/* Keyed by the stable category key (not the translated label), so a
           language switch doesn't look like a filter change and remount the
-          whole grid instead of letting each ScrambleText/FadeText animate
-          its own text change. */}
+          whole list instead of letting each ScrambleText/FadeText animate
+          its own text change. A vertical stack of alternating rows, not a
+          grid of uniform cards. */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeCategoryKey}
@@ -58,13 +58,16 @@ export function Projects() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25, ease: EASE }}
-          className="mt-8 columns-1 gap-5 sm:columns-2"
+          className="mt-10"
         >
           {featured && (
-            <FeaturedProjectCard
+            <ProjectCard
               project={featured}
               statusLabels={t.projects.statusLabels}
+              index={0}
+              featured
               featuredLabel={t.projects.featuredLabel}
+              delay={0}
               onOpenGallery={() => setOpenProject(featured)}
             />
           )}
@@ -73,7 +76,7 @@ export function Projects() {
               key={project.id}
               project={project}
               statusLabels={t.projects.statusLabels}
-              index={i}
+              index={featured ? i + 1 : i}
               delay={0.1 + i * 0.06}
               onOpenGallery={() => setOpenProject(project)}
             />
